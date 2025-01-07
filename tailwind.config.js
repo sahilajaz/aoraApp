@@ -1,10 +1,13 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme'); // Import default Tailwind theme
+const colors = require('tailwindcss/colors'); // Import default colors
 module.exports = {
   // NOTE: Update this to include the paths to all of your component files.
   content: ["./app/**/*.{js,jsx,ts,tsx}" , './components/**/*.{js,jsx,ts,tsx}'],
   presets: [require("nativewind/preset")],
   theme: {
     colors: {
+      ...colors,
       primary: "#161622",
       secondary: {
         DEFAULT: "#FF9C01",
