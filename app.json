@@ -10,12 +10,14 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true
+      
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+       "package": "com.sahil.aora"
     },
     "web": {
       "bundler": "metro",

@@ -2,6 +2,7 @@ import  { useEffect } from 'react'
 import "../global.css";
 import { SplashScreen ,  Stack} from 'expo-router'
 import {useFonts} from 'expo-font'
+import GlobalProvider from '@/context/GlobalProvider';
 
 SplashScreen.preventAutoHideAsync()
 
@@ -31,12 +32,14 @@ const RootLayout = () => {
   } , [fontsLoaded , error]) 
 
   return (
-   <Stack>
+    <GlobalProvider>
+      <Stack>
     <Stack.Screen name='index' options={{headerShown: false}}/>
     <Stack.Screen name="(auth)" options={{headerShown: false}}/>
     <Stack.Screen name="(tabs)" options={{headerShown: false}}/>
     {/* <Stack.Screen name="/search/[query]" options={{headerShown: false}}/> */}
    </Stack>
+    </GlobalProvider>
   )
 }
 

@@ -1,21 +1,36 @@
-import { View, Text, ScrollView, Image, TextInputChangeEventData } from 'react-native'
+import { View, Text, ScrollView, Image, Alert } from 'react-native'
 import React, { useState } from 'react'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import {images} from '../../constants'
 import FormField from '@/components/FormField'
 import CustomButton from '@/components/CustomButton'
-import { Link } from 'expo-router'
+import { Link, router } from 'expo-router'
+import { signIn, signInWithActiveSession } from '@/lib/appwrite'
 
-const signIn = () => {
+const SignIn = () => {
    const [isSubmitting , setIsSubmitting] = useState(false)
    const [form , setForm] = useState({
     email : '',
     password: ''
    })
 
-   const submit = () => {
-
-   }
+   const submit = async () => {
+           if(!form.email || !form.password) {
+             Alert.alert('Error' , 'Please fill in all the field')
+           }
+         setIsSubmitting(true)
+         try {
+              await signInWithActiveSession(
+               form.email,
+               form.password,
+             )
+             router.replace('/home')
+         } catch (error : any) {
+           Alert.alert('error' , error.message)
+         } finally {
+           setIsSubmitting(false)
+         }
+      }
 
   return (
     <SafeAreaView className="bg-primary h-full">
@@ -58,4 +73,4 @@ const signIn = () => {
   )
 }
 
-export default signIn
+export default SignIn
